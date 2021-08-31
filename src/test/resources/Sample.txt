@@ -1,0 +1,6 @@
+There is an example
+of ordinary text
+file. Py code down
+below:
+#Simple Python
+print("Hello, world!")

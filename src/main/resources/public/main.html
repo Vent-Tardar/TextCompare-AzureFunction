@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="HTML5">
+<head>
+    <title>Text compare</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div>
+    <h1>Compare text files</h1>
+    <hr/>
+    <h4>Upload two files to start.</h4>
+    <form method="POST" action="/api/v1/compare" enctype="multipart/form-data">
+        <label>original file</label><br/>
+        <input type="file" name="file1" accept=".txt, .csv, .xaml, .xml,
+        .c, .cpp, .cs, .java, .py, .groovy, .html, .js, .css" /><br/><br/>
+        <label class="gc1-4 grow5 fs100">modified file</label><br/>
+        <input type="file" name="file2" accept=".txt, .csv, .xaml, .xml,
+        .c, .cpp, .cs, .java, .py, .groovy, .html, .js, .css" />
+        <hr/>
+        <button type="submit">Compare files</button>
+    </form>
+</div>
+
+</body>
+</html>

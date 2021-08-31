@@ -1,0 +1,10 @@
+There is an example
+of ordinary text
+file. Java code down
+below:
+//Awesome Java
+public class Main {
+public static void main(String[] args) {
+System.out.println("Hello, world!")
+}
+}
