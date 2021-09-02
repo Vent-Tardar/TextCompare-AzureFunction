@@ -18,8 +18,8 @@ public class CompareController {
 
     @ResponseBody
     public CompareResults compare(ArrayList<String> origin, ArrayList<String> modified) {
-        System.out.println("Origin => "+origin);
-        System.out.println("Modified => "+modified);
+//        System.out.println("Origin => "+origin);
+//        System.out.println("Modified => "+modified);
         return compareTexts.compare(origin, modified);
     }
 }

@@ -40,26 +40,55 @@ public class MainFunction {
         size = fileOne.lastIndexOf("-");
         fileOne = fileOne.substring(0, size-27);
         size = fileTwo.length();
-        fileTwo = fileTwo.substring(25, size-56);
-//        System.out.println("====================================\n" + fileTwo);
+        fileTwo = fileTwo.substring(25);
         ArrayList<String> originO = new ArrayList<>();
+        if (fileOne.contains("\n\r\n")){
+            fileOne = fileOne.replace("\n\r\n", "");
+        } else if (fileOne.contains("\r\n")){
+            fileOne = fileOne.replace("\r\n", "");
+        }
         originO.add(fileOne);
         ArrayList<String> origin = new ArrayList<>();
-        for (String s : originO) {
-            s = s.replace("\n", ", ");
-            origin.add(s);
-        }
+//        for (String s : originO) {
+//            if(s.contains("\r\n")){
+//                origin.add(s);
+//                System.out.println(origin);
+//            }
+//        }
         ArrayList<String> modifiedO = new ArrayList<>();
+        if (fileTwo.contains("\n\r\n")){
+            fileTwo = fileTwo.replace("\n\r\n", "");
+        }  else if (fileTwo.contains("\r")){
+            fileTwo = fileTwo.replace("\r", "");
+        }
         modifiedO.add(fileTwo);
         ArrayList<String> modified = new ArrayList<>();
-        for (String s : modifiedO) {
-            s = s.replace("\n", ", ");
-            modified.add(s);
+//        for (String s : modifiedO) {
+//            if(s.contains("\r\n")){
+//                System.out.println("Find: "+s);
+//                modified.add(s);
+//                System.out.println("Add: "+modified);
+//            }
+//        }
+        String s = fileTwo.substring(0, fileTwo.indexOf("\r\n"));
+//        System.out.println(s);
+        modified.add(s);
+        s = fileTwo.substring(s.length());
+        fileTwo = fileTwo.substring(s.length());
+//        System.out.println(s);
+        while (s.length() != fileTwo.length()){
+            if(!s.contains("---------")){
+                modified.add(s);
+                s = fileTwo.substring(s.length());
+                fileTwo = fileTwo.substring(s.length());
+            }
         }
+//        for (int i = 0; i < modified.size(); i++){
+//            System.out.println(modified);
+//        }
         CompareController compareController = new CompareController(new FileCompare());
-        CompareResults comResults = compareController.compare(origin, modified);
+        CompareResults comResults = compareController.compare(originO, modifiedO);
         List<Diff> results = comResults.getDiffList();
-        System.out.println(results);
         return request.createResponseBuilder(HttpStatus.OK).body(results).build();
     }
 }
