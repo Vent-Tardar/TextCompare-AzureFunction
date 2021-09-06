@@ -22,13 +22,11 @@ public class MainFunction {
     @FunctionName("MainFunction")
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
-            final ExecutionContext context) throws IOException {
+            final ExecutionContext context) {
         String body = request.getBody().get();
         MainController mainController = new MainController();
-        ArrayList<String> origin;
-        ArrayList<String> modified;
-        origin = mainController.cleanedOriginal(body);
-        modified = mainController.cleanedModified(body);
+        ArrayList<String> origin = mainController.cleanedOriginal(body);
+        ArrayList<String> modified = mainController.cleanedModified(body);
 
         CompareController compareController = new CompareController(new FileCompare());
         CompareResults comResults = compareController.compare(origin, modified);
