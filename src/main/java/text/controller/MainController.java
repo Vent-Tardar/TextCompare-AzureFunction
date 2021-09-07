@@ -19,28 +19,22 @@ public class MainController {
             fileOne = fileOne.replace("\n\r\n", "");
         }
         fileOne = fileOne.replaceAll("\r", "");
-
-        System.out.println(fileOne);
         ArrayList<String> origin = new ArrayList<>();
         for(int i = 0; i < fileOne.length(); i++){
             s = fileOne.substring(0, fileOne.indexOf("\n")+1);
-            System.out.println("S: "+s);
             fileOne = fileOne.substring(s.length());
             s = s.replace("\n", "");
             origin.add(s);
         }
         origin.add(fileOne);
-        System.out.println(origin.size());
         s = origin.get(origin.size()-1);
-        System.out.println("S_s: "+s);
-        if (s.equals("\n")){
+        if (s.contains("\n")){
             s = s.replace("\n", "");
             origin.remove(origin.get(origin.size()-1));
             origin.add(s);
         } else if (s.equals("")){
             origin.remove(origin.get(origin.size()-1));
         }
-        System.out.println("Original: "+origin);
         return origin;
     }
 
@@ -61,7 +55,6 @@ public class MainController {
             modified.add(s);
         }
         modified.remove(modified.get(modified.size()-1));
-        System.out.println("Modified: "+modified);
         return modified;
     }
 }
